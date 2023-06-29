@@ -6,7 +6,7 @@ export const HomePage = () => {
 	console.log({ user });
 	return (
 		<div>
-			<h1>Homepage</h1>
+			<h1>Welcome to the world of TV Shows.</h1>
 		</div>
 	);
 };

@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import authService from '../services/auth.service';
+import Form from 'react-bootstrap/Form';
+
 const API_URL = 'http://localhost:5005';
 
 export const SignupPage = (props) => {
@@ -36,31 +38,49 @@ export const SignupPage = (props) => {
 	};
 
 	return (
-		<div className="SignupPage">
-			<h1>Sign Up</h1>
+		<div className="container p-5">
+			<div className="p-5 border">
+				<h1 className="p-5">Sign Up</h1>
 
-			<form onSubmit={handleSignupSubmit}>
-				<label>Email:</label>
-				<input type="email" name="email" value={email} onChange={handleEmail} />
+				<Form onSubmit={handleSignupSubmit}>
+					<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+						<Form.Label className="form-label">Email:</Form.Label>
+						<Form.Control
+							type="email"
+							name="email"
+							value={email}
+							onChange={handleEmail}
+						/>
+					</Form.Group>
+					<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+						<Form.Label className="form-label">Password:</Form.Label>
+						<Form.Control
+							type="password"
+							name="password"
+							value={password}
+							onChange={handlePassword}
+						/>
+					</Form.Group>
+					<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+						<Form.Label className="form-label">Name:</Form.Label>
+						<Form.Control
+							type="text"
+							name="name"
+							value={name}
+							onChange={handleName}
+						/>
+						<br />
+						<button className="btn btn-secondary btn-lg" type="submit">
+							Sign Up
+						</button>
+					</Form.Group>
+				</Form>
 
-				<label>Password:</label>
-				<input
-					type="password"
-					name="password"
-					value={password}
-					onChange={handlePassword}
-				/>
+				{errorMessage && <p className="error-message">{errorMessage}</p>}
 
-				<label>Name:</label>
-				<input type="text" name="name" value={name} onChange={handleName} />
-
-				<button type="submit">Sign Up</button>
-			</form>
-
-			{errorMessage && <p className="error-message">{errorMessage}</p>}
-
-			<p>Already have account?</p>
-			<Link to={'/login'}> Login</Link>
+				<p>Already have account?</p>
+				<Link to={'/login'}> Login</Link>
+			</div>
 		</div>
 	);
 };
