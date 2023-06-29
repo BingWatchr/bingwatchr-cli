@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { AddShow } from "../components/AddShow";
-import {ShowCard } from "../components/ShowCard";
+import { ShowCard } from "../components/ShowCard";
 import axios from "axios";
 const API_URL = "http://localhost:5005";
 
@@ -20,10 +20,10 @@ export const ShowListPage = () => {
     getAllShows();
   }, []);
   return (
-    <div className="ProjectListPage">
+    <div className="ShowListPage">
       <AddShow refreshProjects={getAllShows} />
-      {shows.map((project) => (
-        <ShowCard key={project._id} {...project} />
+      {shows.map((show) => (
+        <ShowCard key={show._id} {...shows} />
       ))}
     </div>
   );
