@@ -25,16 +25,24 @@ export const OurNavbar = () => {
 						<Nav.Link href="#pricing">Pricing</Nav.Link>
 					</Nav>
 					<Nav>
-						<Nav.Link href="#deets">More deets</Nav.Link>
 						{isLoggedIn && (
-							<div>
+							<>
 								<button onClick={logOutUser}>Logout</button>
-								<span>Welcome, {user && user.name}</span>
-							</div>
+								<Nav.Link to="#">Welcome, {user && user.name}</Nav.Link>
+							</>
 						)}
-						<Nav.Link eventKey={2} href="#memes">
-							Dank memes
-						</Nav.Link>
+						{!isLoggedIn && (
+							<>
+								<Nav.Link to="/signup">
+									{' '}
+									<button>Sign Up</button>{' '}
+								</Nav.Link>
+								<Nav.Link to="/login">
+									{' '}
+									<button>Login</button>{' '}
+								</Nav.Link>
+							</>
+						)}
 					</Nav>
 				</Navbar.Collapse>
 			</Container>
