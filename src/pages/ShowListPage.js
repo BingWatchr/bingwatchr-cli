@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 import { AddShow } from "../components/AddShow";
 import { ShowCard } from "../components/ShowCard";
-import axios from "axios";
 const API_URL = "http://localhost:5005";
 
 export const ShowListPage = () => {
@@ -10,7 +10,10 @@ export const ShowListPage = () => {
   const getAllShows = () => {
     axios
       .get(`${API_URL}/api/shows`)
-      .then((response) => setShow(response.data))
+      .then((response) => {
+        setShow(response.data);
+        console.log(shows);
+      })
       .catch((error) => console.log(error));
   };
 
