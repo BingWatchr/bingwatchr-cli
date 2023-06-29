@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/auth.context';
 import authService from '../services/auth.service';
+import Form from 'react-bootstrap/Form';
 const API_URL = 'http://localhost:5005';
 
 export const LoginPage = (props) => {
@@ -40,22 +41,23 @@ export const LoginPage = (props) => {
 	};
 
 	return (
-		<div className="container">
-			<div className="mb-3">
-				<h1>Login</h1>
+		<div className="container p-5">
+			<div className="p-5 border">
+				<h1 className="p-5">Login</h1>
 
-				<form onSubmit={handleLoginSubmit}>
-					<label className="form-label">Email:</label>
-					<input
-						className="form-control"
-						type="email"
-						name="email"
-						value={email}
-						onChange={handleEmail}
-					/>
-
-					<label className="form-label">Password:</label>
-					<input
+				<Form onSubmit={handleLoginSubmit}>
+					<Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+						<Form.Label className="form-label">Email:</Form.Label>
+						<Form.Control
+							className="form-control"
+							type="email"
+							name="email"
+							value={email}
+							onChange={handleEmail}
+						/>
+					</Form.Group>
+					<Form.Label className="form-label">Password:</Form.Label>
+					<Form.Control
 						id="inputPassword5"
 						className="form-control"
 						type="password"
@@ -63,15 +65,15 @@ export const LoginPage = (props) => {
 						value={password}
 						onChange={handlePassword}
 					/>
-
+					<br />
 					<button className="btn btn-secondary btn-lg" type="submit">
 						Login
 					</button>
-				</form>
+				</Form>
 				{errorMessage && <p className="error-message">{errorMessage}</p>}
 
 				<p>Don't have an account yet?</p>
-				<Link to={'/signup'}> Sign Up</Link>
+				<Link to={'/signup'}> Sign Up here</Link>
 			</div>
 		</div>
 	);
