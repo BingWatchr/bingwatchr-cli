@@ -6,6 +6,7 @@ import { ShowDetailsPage } from './pages/ShowDetails';
 import { ShowListPage } from './pages/ShowListPage';
 import { OurNavbar } from './components/Navbar';
 import { LoginPage } from './pages/Login';
+import { EditReviewPage } from './pages/EditReviewPage';
 
 function App() {
 	return (
@@ -17,6 +18,7 @@ function App() {
 				<Route path="/signup" element={<SignupPage />} />
 				<Route path="/shows" element={<ShowListPage />} />
 				<Route path="/shows/:showId" element={<ShowDetailsPage />} />
+				<Route path="/reviews/edit/:reviewId" element={<EditReviewPage />} />
 			</Routes>
 		</div>
 	);
