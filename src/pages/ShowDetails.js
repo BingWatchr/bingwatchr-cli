@@ -31,15 +31,17 @@ export const ShowDetailsPage = () => {
   return (
     <>
       {show && (
-        <Card className="p-5">
+        <Card className="d-flex flex-row align-items-center">
           <Card.Img
-            className="p-5"
+            className=""
             variant="top"
             style={{ width: "14rem" }}
-            src={show.image.medium}
+            src={show.image}
           />
-          <Card.Title>{show.name}</Card.Title>
-          <Card.Body>{show.summary} </Card.Body>
+         <div className="d-flex flex-column align-items-center">
+            <Card.Title>{show.name}</Card.Title>
+            <Card.Body>{show.summary} </Card.Body>
+         </div>
         </Card>
       )}
       <AddReview refreshShows={getShow} showId={showId} />
