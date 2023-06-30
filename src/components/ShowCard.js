@@ -1,12 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
 
-export const ShowCard = ({ name, summary, _id }) => {
-  return (
-    <div className="ShowCard card">
-      <Link to={`/shows/${_id}`}>
-        <h3>{name}</h3>
-      </Link>
-      <p style={{ maxWidth: "400px" }}>{summary} </p>
-    </div>
-  );
+export const ShowCard = (value) => {
+	const newSummary = value.summary.replace(/<[^>]*>?/gm, '');
+
+	return (
+		<>
+			<Card className="p-5">
+				<Card.Img
+					className="p-5"
+					variant="top"
+					style={{ width: '14rem' }}
+					src={value.image.medium}
+				/>
+				<Link to={`/shows/${value._id}`}>
+					<Card.Title>{value.name}</Card.Title>
+				</Link>
+				<Card.Body>{newSummary}</Card.Body>
+			</Card>
+		</>
+	);
 };
