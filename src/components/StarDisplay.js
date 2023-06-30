@@ -1,10 +1,22 @@
-import { useState } from "react";
+import PropTypes from "prop-types";
+
 export const StarDisplay = (value) => {
-  const [rating, setRating] = useState(0);
-  setRating(Math.round(value.rating / 2));
+  
+  const filledStars = Math.round(value.value / 2);
+  const emptyStars = 5 - filledStars;
+  console.log(filledStars)
   return (
-    <div className="star-rating">
-      <span className="star">&#9733;</span>
+    <div className="StarDisplay">
+      {[...Array(filledStars)].map((_, index) => (
+        <span key={index} className="star">&#9733;</span>
+      ))}
+      {[...Array(emptyStars)].map((_, index) => (
+        <span key={index} className="star">&#9734;</span>
+      ))}
     </div>
   );
+};
+
+StarDisplay.propTypes = {
+  value: PropTypes.number,
 };
