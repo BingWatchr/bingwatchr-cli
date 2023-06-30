@@ -1,19 +1,27 @@
 import { useState } from "react";
 import axios from "axios";
 const API_URL = "http://localhost:5005";
+
 export const AddShow = (props) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [name, setName] = useState("");
+  const [summary, setSummary] = useState("");
+  const [imageURL, setImageURL] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const requestBody = { title, description };
+    const requestBody = { name, summary, imageURL };
+    // Get the token from the localStorage
+    const storedToken = localStorage.getItem("authToken");
+    // Send the token through the request "Authorization" Headers
     axios
-      .post(`${API_URL}/api/shows`, requestBody)
+      .post(`${API_URL}/api/shows`, requestBody, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
       .then((response) => {
         // Reset the state
-        setTitle("");
-        setDescription("");
+        setName("");
+        setSummary("");
+        setImageURL("");
         props.refreshShows();
       })
       .catch((error) => console.log(error));
@@ -26,15 +34,22 @@ export const AddShow = (props) => {
         <input
           type="text"
           name="title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
-        <label>Description:</label>
+        <label>Summary:</label>
         <textarea
           type="text"
           name="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          value={summary}
+          onChange={(e) => setSummary(e.target.value)}
+        />
+        <label>Image URL:</label>
+        <input
+          type="text"
+          name="imageURL"
+          value={imageURL}
+          onChange={(e) => setImageURL(e.target.value)}
         />
         <button type="submit">Submit</button>
       </form>

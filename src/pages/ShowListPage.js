@@ -14,8 +14,7 @@ export const ShowListPage = () => {
 		axios
 			.get(`${API_URL}/api/shows`)
 			.then((response) => {
-				setShow(response.data);
-				console.log(shows);
+				setShow(response.data);			
 			})
 			.catch((error) => console.log(error));
 	};
@@ -27,7 +26,7 @@ export const ShowListPage = () => {
 	}, []);
 	return (
 		<div className="ShowListPage">
-			<AddShow refreshProjects={getAllShows} />
+			<AddShow refreshShows={getAllShows} />
 			<br />
 			<Container fluid>
 				<Row xs={1} md={4} className="g-4">

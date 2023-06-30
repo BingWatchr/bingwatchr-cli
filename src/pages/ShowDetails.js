@@ -18,8 +18,7 @@ export const ShowDetailsPage = () => {
       .then((response) => {
         const oneShow = response.data;
         //takes the html identation away from the text.
-        response.data.summary = response.data.summary.replace(/<[^>]*>?/gm, "");
-        console.log(response.data.summary);
+        response.data.summary = response.data.summary.replace(/<[^>]*>?/gm, "");        
         setShow(oneShow);
       })
       .catch((error) => console.log(error));
