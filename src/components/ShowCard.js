@@ -33,7 +33,7 @@ export const ShowCard = (value) => {
           >
             <Card.Title>{value.name}</Card.Title>
           </Link>
-         
+          <StarDisplay value={value.rating.average} />
           <Card.Body>{newSummary}</Card.Body>
         </div>
       </Card>
