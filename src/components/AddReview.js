@@ -28,7 +28,7 @@ export const AddReview = (props) => {
 				setRating(8);
 				// Invoke the callback function coming through the props
 				// from the ShowDetailsPage, to refresh the show details
-				props.refreshShow();
+				props.refreshShows();
 			})
 			.catch((e) => {
 				console.log(e);

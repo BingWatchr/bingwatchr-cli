@@ -42,7 +42,7 @@ export const ShowDetailsPage = () => {
           <Card.Body>{show.summary} </Card.Body>
         </Card>
       )}
-      <AddReview refreshProject={getShow} showId={showId} />
+      <AddReview refreshShows={getShow} showId={showId} />
 
       {show &&
         show.reviews.map((review) => (
