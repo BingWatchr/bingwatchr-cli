@@ -51,7 +51,7 @@ export const EditReviewPage = (props) => {
 
 				<label>Rating:</label>
 				<textarea
-					name="description"
+					name="rating"
 					type="number"
 					value={rating}
 					onChange={(e) => setRating(e.target.value)}

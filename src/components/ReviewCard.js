@@ -25,6 +25,7 @@ export const ReviewCard = ({
 			<h3>Author: {author}</h3>
 			<h4>Description:</h4>
 			<p>{text}</p>
+			<p>Rating: {rating}</p>
 			<p>{createdAt}</p>
 
 			<button
