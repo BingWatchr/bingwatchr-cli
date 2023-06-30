@@ -3,7 +3,6 @@ import './App.css';
 import { SignupPage } from './pages/signup';
 import { LoginPage } from './pages/login';
 import { HomePage } from './pages/homepage';
-import { ShowListPage } from './pages/ShowListPage';
 import { ShowDetailsPage } from './pages/ShowDetails';
 import { OurNavbar } from './components/Navbar';
 
@@ -15,8 +14,7 @@ function App() {
 				<Route path="/" element={<HomePage />} />
 				<Route path="/login" element={<LoginPage />} />
 				<Route path="/signup" element={<SignupPage />} />
-				<Route path="/shows" element={<ShowListPage />} />
-				<Route path="/shows/:showId" element={<ShowDetailsPage />} />
+				<Route path="/shows" element={<ShowDetailsPage />} />
 			</Routes>
 		</div>
 	);
