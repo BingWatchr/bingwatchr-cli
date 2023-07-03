@@ -5,6 +5,8 @@ import Card from 'react-bootstrap/Card';
 import { AddReview } from './../components/AddReview';
 import { ReviewCard } from './../components/ReviewCard';
 import { StarDisplay } from './../components/StarDisplay';
+import { FavMovie } from '../components/Favorite';
+
 const API_URL = 'http://localhost:5005';
 
 export const ShowDetailsPage = () => {
@@ -42,6 +44,7 @@ export const ShowDetailsPage = () => {
 						<StarDisplay value={show.rating} />
 						<Card.Body>{show.summary} </Card.Body>
 					</div>
+					<FavMovie value={show} />
 				</Card>
 			)}
 			<AddReview refreshShows={getShow} showId={showId} />
