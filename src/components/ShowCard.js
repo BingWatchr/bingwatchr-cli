@@ -2,17 +2,16 @@ import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import { StarDisplay } from "./StarDisplay";
 export const ShowCard = (value) => {
-  const newSummary = value.summary.replace(/<[^>]*>?/gm, "");
-
+  const premieredYear = value.premiered.slice(0, 4);
   return (
     <>
-      <Card className="d-flex flex-row align-items-center">
+      <Card className="d-flex flex-row align-items-center gap-5">
         <div>
           {value.image ? (
             <Card.Img
               className=""
               variant="top"
-              style={{ width: "14rem" }}
+              style={{ width: "12rem" }}
               src={value.image}
               alt="no image"
             />
@@ -20,21 +19,32 @@ export const ShowCard = (value) => {
             <Card.Img
               className=""
               variant="top"
-              style={{ width: "14rem" }}
+              style={{ width: "12rem" }}
               alt="no image"
             />
           )}
         </div>
 
-        <div className="d-flex flex-column align-items-center">
-          <Link
-            to={`/shows/${value._id}`}
-            style={{ textDecoration: "none", color: "black" }}
-          >
-            <Card.Title>{value.name}</Card.Title>
-          </Link>
-          <StarDisplay value={value.rating.average} />
-          <Card.Body>{newSummary}</Card.Body>
+        <div className="">
+          <div className="d-flex flex-column align-items-center">
+            <Link
+              to={`/shows/${value._id}`}
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <Card.Title>
+                <h2>{value.name}</h2>
+              </Card.Title>
+            </Link>
+            <h4>
+              <i style={{ color: "#888888" }}>{premieredYear}</i>
+            </h4>
+          </div>
+          <Card.Body>
+            <div className="d-inline-flex gap-2">
+              <StarDisplay value={value.rating} />
+              <div>{value.reviews.length}</div>
+            </div>
+          </Card.Body>
         </div>
       </Card>
     </>

@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import { AddReview } from "./../components/AddReview";
 import { ReviewCard } from "./../components/ReviewCard";
-import { StarRating } from "./../components/StarRating";
+import { StarDisplay } from "./../components/StarDisplay";
 const API_URL = "http://localhost:5005";
 
 export const ShowDetailsPage = () => {
@@ -40,7 +39,7 @@ export const ShowDetailsPage = () => {
           />
           <div className="d-flex flex-column align-items-center">
             <Card.Title>{show.name}</Card.Title>
-            <StarRating />
+            <StarDisplay value={show.rating} />
             <Card.Body>{show.summary} </Card.Body>
           </div>
         </Card>

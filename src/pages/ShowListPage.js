@@ -30,7 +30,7 @@ export const ShowListPage = () => {
       <AddShow refreshShows={getAllShows} />
       <br />
       <Container>
-        <Row  className="">
+        <Row>
           <Col>
             {shows.map((show) => {
               return <ShowCard key={show._id} {...show} />;
