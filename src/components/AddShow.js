@@ -1,7 +1,8 @@
 import { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 import axios from "axios";
 const API_URL = "http://localhost:5005";
-
 export const AddShow = (props) => {
   const [name, setName] = useState("");
   const [summary, setSummary] = useState("");
@@ -29,7 +30,7 @@ export const AddShow = (props) => {
   return (
     <div className="AddShow">
       <h3>Add Show</h3>
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <label>Title:</label>
         <input
           type="text"
@@ -51,8 +52,8 @@ export const AddShow = (props) => {
           value={imageURL}
           onChange={(e) => setImageURL(e.target.value)}
         />
-        <button type="submit">Submit</button>
-      </form>
+        <Button variant="dark" type="submit">Submit</Button>
+      </Form>
     </div>
   );
 };
