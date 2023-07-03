@@ -3,13 +3,13 @@ import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import { StarRating } from "./StarRating";
-
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 const API_URL = "http://localhost:5005";
 
 export const AddReview = (props) => {
   const { user } = useContext(AuthContext);
   const [text, setText] = useState("");
-
   const [newRating, setNewRating] = useState();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,28 +35,33 @@ export const AddReview = (props) => {
       });
   };
 
-  /*   useEffect(() => {
-    console.log(newRating);
-  }, [newRating]); */
-
   return (
-    <div className="AddReview">
-      <h3>Add New Review</h3>
-
-      <form onSubmit={handleSubmit}>
-        <label>Title:</label>
-        <input
-          type="text"
-          name="text"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-
-        <label>rating:</label>
+    <div className="AddReview mt-5">
+      <h5 className="mb-3">Want to review this Show?</h5>
+      <Form
+        className="d-flex flex-column justify-content-center align-items-center"
+        onSubmit={handleSubmit}
+      >
+        <label>Select Rating</label>
         <StarRating newRating={newRating} setNewRating={setNewRating} />
 
-        <button type="submit">Add Review</button>
-      </form>
+        <div className="d-flex flex-column align-items-center w-25">
+          <label className="m-1">Write a Review</label>
+          <textarea
+            maxLength="500"
+            rows="5"
+            cols="60"
+            className="m-1"
+            type="text"
+            name="text"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+          />
+          <Button className="m-1 w-50" variant="dark" type="submit">
+            Review
+          </Button>
+        </div>
+      </Form>
     </div>
   );
 };
