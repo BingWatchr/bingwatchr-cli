@@ -8,9 +8,12 @@ import Col from "react-bootstrap/Col";
 
 const API_URL = "http://localhost:5005";
 
-export const ShowListPage = () => {
+export const ShowListPage = ({ searchTerm }) => {
   const [shows, setShow] = useState([]);
-
+  // Filter the items based on the searchQuery
+  const filteredItems = shows.filter((item) =>
+    item.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
   const getAllShows = () => {
     axios
       .get(`${API_URL}/api/shows`)
@@ -30,9 +33,9 @@ export const ShowListPage = () => {
       <AddShow refreshShows={getAllShows} />
       <br />
       <Container>
-        <Row  className="">
+        <Row>
           <Col>
-            {shows.map((show) => {
+            {filteredItems.map((show) => {
               return <ShowCard key={show._id} {...show} />;
             })}
           </Col>
