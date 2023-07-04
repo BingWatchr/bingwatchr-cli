@@ -5,7 +5,6 @@ import Card from "react-bootstrap/Card";
 import { AddReview } from "./../components/AddReview";
 import { ReviewCard } from "./../components/ReviewCard";
 import { StarDisplay } from "./../components/StarDisplay";
-const API_URL = "http://localhost:5005";
 
 export const ShowDetailsPage = () => {
   const [show, setShow] = useState(null);
@@ -14,7 +13,7 @@ export const ShowDetailsPage = () => {
 
   const getShow = () => {
     axios
-      .get(`${API_URL}/api/shows/${showId}`)
+      .get(`${process.env.REACT_APP_SERVER_URL}/api/shows/${showId}`)
       .then((response) => {
         const oneShow = response.data;
         //takes the html identation away from the text.
@@ -25,10 +24,9 @@ export const ShowDetailsPage = () => {
       .catch((error) => console.log(error));
   };
 
-
-	useEffect(() => {
-		getShow();
-	}, []);
+  useEffect(() => {
+    getShow();
+  }, []);
 
   return (
     <>

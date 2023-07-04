@@ -5,7 +5,6 @@ import { AuthContext } from "../context/auth.context";
 import { StarRating } from "./StarRating";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-const API_URL = "http://localhost:5005";
 
 export const AddReview = (props) => {
   const { user } = useContext(AuthContext);
@@ -21,7 +20,7 @@ export const AddReview = (props) => {
     const storedToken = localStorage.getItem("authToken");
 
     axios
-      .post(`${API_URL}/api/reviews`, requestBody, {
+      .post(`${process.env.REACT_APP_SERVER_URL}/api/reviews`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {

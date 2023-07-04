@@ -2,7 +2,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-const API_URL = "http://localhost:5005";
 
 export const ReviewCard = ({
   _id,
@@ -15,7 +14,7 @@ export const ReviewCard = ({
 }) => {
   const deleteReview = (id) => {
     axios
-      .delete(`${API_URL}/api/reviews/${id}`)
+      .delete(`${process.env.REACT_APP_SERVER_URL}/api/reviews/${id}`)
       .then(() => {
         window.location.reload(false);
       })
