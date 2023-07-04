@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
@@ -25,38 +24,11 @@ export const ShowDetailsPage = () => {
       })
       .catch((error) => console.log(error));
   };
-=======
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import Card from 'react-bootstrap/Card';
-import { AddReview } from './../components/AddReview';
-import { ReviewCard } from './../components/ReviewCard';
-import { StarDisplay } from './../components/StarDisplay';
-const API_URL = 'http://localhost:5005';
-
-export const ShowDetailsPage = () => {
-	const [show, setShow] = useState(null);
-	const { showId } = useParams();
-
-	const getShow = () => {
-		axios
-			.get(`${API_URL}/api/shows/${showId}`)
-			.then((response) => {
-				const oneShow = response.data;
-				//takes the html identation away from the text.
-				response.data.summary = response.data.summary.replace(/<[^>]*>?/gm, '');
-				setShow(oneShow);
-			})
-			.catch((error) => console.log(error));
-	};
->>>>>>> 5e8a8348de1ca1a324a5a7a506e3e7e2b12dda78
 
 	useEffect(() => {
 		getShow();
 	}, []);
 
-<<<<<<< HEAD
   return (
     <>
       {show && (
@@ -103,31 +75,4 @@ export const ShowDetailsPage = () => {
         ))}
     </>
   );
-=======
-	return (
-		<>
-			{show && (
-				<Card className="d-flex flex-row align-items-center">
-					<Card.Img
-						className=""
-						variant="top"
-						style={{ width: '14rem' }}
-						src={show.image}
-					/>
-					<div className="d-flex flex-column align-items-center">
-						<Card.Title>{show.name}</Card.Title>
-						<StarDisplay value={show.rating} />
-						<Card.Body>{show.summary} </Card.Body>
-					</div>
-				</Card>
-			)}
-			<AddReview refreshShows={getShow} showId={showId} />
-
-			{show &&
-				show.reviews.map((review) => (
-					<ReviewCard key={review._id} {...review} />
-				))}
-		</>
-	);
->>>>>>> 5e8a8348de1ca1a324a5a7a506e3e7e2b12dda78
 };
