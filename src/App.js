@@ -22,7 +22,7 @@ function App() {
 					path="/shows"
 					element={<ShowListPage searchTerm={searchTerm} />}
 				/>
-				<Route path="/shows/:showId" element={<ShowDetailsPage />} />
+				<Route path="/shows/:showId" element={<ShowDetailsPage />}  />
 				<Route path="/reviews/edit/:reviewId" element={<EditReviewPage />} />
 			</Routes>
 		</div>

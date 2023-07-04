@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
@@ -10,10 +10,10 @@ export const AddReview = (props) => {
   const { user } = useContext(AuthContext);
   const [text, setText] = useState("");
   const [newRating, setNewRating] = useState();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const { showId } = props;
-    console.log(user);
     const author = user._id;
     const requestBody = { author, text, newRating, showId };
     // Get the token from the localStorage
@@ -30,7 +30,7 @@ export const AddReview = (props) => {
         props.refreshShows();
       })
       .catch((e) => {
-        console.log(e, requestBody);
+        console.log(e);
       });
   };
 
