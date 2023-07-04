@@ -25,6 +25,7 @@ export const ShowDetailsPage = () => {
       .catch((error) => console.log(error));
   };
 
+
 	useEffect(() => {
 		getShow();
 	}, []);
