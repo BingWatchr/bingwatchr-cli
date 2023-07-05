@@ -5,11 +5,15 @@ import Card from 'react-bootstrap/Card';
 import { AddReview } from './../components/AddReview';
 import { ReviewCard } from './../components/ReviewCard';
 import { StarDisplay } from './../components/StarDisplay';
+import { FavMovie } from './../components/Favorite';
+import { AuthContext } from '../context/auth.context';
+import { useContext } from 'react';
 
 export const ShowDetailsPage = () => {
 	const [show, setShow] = useState(null);
 	const { showId } = useParams();
 	const [genresString, setGenresString] = useState('');
+	const { user } = useContext(AuthContext);
 
 	const getShow = () => {
 		axios
@@ -41,6 +45,7 @@ export const ShowDetailsPage = () => {
 					<div className="d-flex flex-column align-items-center">
 						<Card.Title>
 							<h2>{show.name}</h2>
+							{user && <FavMovie value={show} />}
 						</Card.Title>
 						<div className="d-inline-flex gap-2">
 							<StarDisplay value={show.rating} />
