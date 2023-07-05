@@ -6,6 +6,7 @@ import { ShowDetailsPage } from './pages/ShowDetails';
 import { ShowListPage } from './pages/ShowListPage';
 import { OurNavbar } from './components/Navbar';
 import { LoginPage } from './pages/Login';
+import { Profile } from './pages/Profile';
 import { EditReviewPage } from './pages/EditReviewPage';
 import { useState } from 'react';
 
@@ -22,8 +23,9 @@ function App() {
 					path="/shows"
 					element={<ShowListPage searchTerm={searchTerm} />}
 				/>
-				<Route path="/shows/:showId" element={<ShowDetailsPage />}  />
+				<Route path="/shows/:showId" element={<ShowDetailsPage />} />
 				<Route path="/reviews/edit/:reviewId" element={<EditReviewPage />} />
+				<Route path="/profile" element={<Profile />} />
 			</Routes>
 		</div>
 	);
