@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../context/auth.context';
 import axios from 'axios';
-import { AddShow } from '../components/AddShow';
 import { ShowCard } from '../components/ShowCard';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -34,18 +33,21 @@ export const Profile = () => {
 
 	return (
 		<div className="ShowListPage">
-			<h1>Your profile page, {username}</h1>
-			<br />
-			<h3>Your favorite shows</h3>
-			<Container>
-				<Row>
-					<Col>
-						{shows.map((show) => {
-							return <ShowCard key={show._id} {...show} />;
-						})}
-					</Col>
-				</Row>
-			</Container>
+			{user && (
+				<div className="profile">
+					<h1>Your profile page</h1>
+					<h3>Your favorite shows</h3>
+					<Container>
+						<Row>
+							<Col>
+								{shows.map((show) => {
+									return <ShowCard key={show._id} {...show} />;
+								})}
+							</Col>
+						</Row>
+					</Container>
+				</div>
+			)}
 		</div>
 	);
 };
