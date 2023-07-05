@@ -25,7 +25,6 @@ function App() {
 				/>
 				<Route path="/shows/:showId" element={<ShowDetailsPage />} />
 				<Route path="/reviews/edit/:reviewId" element={<EditReviewPage />} />
-				<Route path="/profile" element={<Profile />} />
 			</Routes>
 		</div>
 	);
