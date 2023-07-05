@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../context/auth.context';
 import axios from 'axios';
 import { AddShow } from '../components/AddShow';
 import { ShowCard } from '../components/ShowCard';
@@ -6,19 +7,21 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-const API_URL = 'http://localhost:5005';
-
-export const ShowListPage = ({ searchTerm }) => {
+export const Profile = () => {
 	const [shows, setShow] = useState([]);
-	// Filter the items based on the searchQuery
-	const filteredItems = shows.filter((item) =>
-		item.name.toLowerCase().includes(searchTerm.toLowerCase())
-	);
+	const { user } = useContext(AuthContext);
+	console.log(user);
+	const likedBy = user._id;
+	const username = user.name;
+	console.log(likedBy);
+
 	const getAllShows = () => {
 		axios
-			.get(`${API_URL}/api/shows`)
+			.get(`${process.env.REACT_APP_SERVER_URL}/api/shows`)
 			.then((response) => {
-				setShow(response.data);
+				const allData = response.data;
+				setShow(allData.filter((item) => item.favorites.includes(likedBy)));
+				console.log(response.data);
 			})
 			.catch((error) => console.log(error));
 	};
@@ -28,14 +31,16 @@ export const ShowListPage = ({ searchTerm }) => {
 	useEffect(() => {
 		getAllShows();
 	}, []);
+
 	return (
 		<div className="ShowListPage">
-			<AddShow refreshShows={getAllShows} />
+			<h1>Your profile page, {username}</h1>
 			<br />
+			<h3>Your favorite shows</h3>
 			<Container>
 				<Row>
 					<Col>
-						{filteredItems.map((show) => {
+						{shows.map((show) => {
 							return <ShowCard key={show._id} {...show} />;
 						})}
 					</Col>

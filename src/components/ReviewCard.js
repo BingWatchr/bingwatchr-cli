@@ -2,8 +2,16 @@ import axios from "axios";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { StarDisplay } from "./../components/StarDisplay";
-export const ReviewCard = (props) => {
-  const { _id, author, text, rating, tvShow, createdAt, updatedAt } = props;
+export const ReviewCard = (
+  _id,
+  author,
+  text,
+  rating,
+  tvShow,
+  createdAt,
+  show,
+  review
+) => {
   const storedToken = localStorage.getItem("authToken");
   const deleteReview = (reviewId) => {
     axios
@@ -15,11 +23,11 @@ export const ReviewCard = (props) => {
   };
 
   const updateRating = (showId) => {
-    const showRating = props.show.rating;
-    const showWeight = props.show.weight;
+    const showRating = show.rating;
+    const showWeight = show.weight;
     const newRating =
-      (showRating * showWeight - props.review.rating) / (showWeight - 1);
-    const newWeight = props.show.weight - 1;
+      (showRating * showWeight - review.rating) / (showWeight - 1);
+    const newWeight = show.weight - 1;
     const requestShowBody = { rating: newRating, weight: newWeight };
     axios
       .put(
