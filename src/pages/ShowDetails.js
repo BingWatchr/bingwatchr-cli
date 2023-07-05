@@ -42,7 +42,7 @@ export const ShowDetailsPage = () => {
 					/>
 					<div className="d-flex flex-column align-items-center">
 						<Card.Title>{show.name}</Card.Title>
-						<StarDisplay value={show.rating.average / 2} />
+						<StarDisplay value={show.rating} />
 						<Card.Body>{show.summary} </Card.Body>
 					</div>
 					<FavMovie value={show} />
