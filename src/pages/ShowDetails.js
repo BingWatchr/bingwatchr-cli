@@ -12,6 +12,7 @@ const API_URL = 'http://localhost:5005';
 export const ShowDetailsPage = () => {
 	const [show, setShow] = useState(null);
 	const { showId } = useParams();
+	console.log('show');
 
 	const getShow = () => {
 		axios
@@ -41,7 +42,7 @@ export const ShowDetailsPage = () => {
 					/>
 					<div className="d-flex flex-column align-items-center">
 						<Card.Title>{show.name}</Card.Title>
-						<StarDisplay value={show.rating} />
+						<StarDisplay value={show.rating.average / 2} />
 						<Card.Body>{show.summary} </Card.Body>
 					</div>
 					<FavMovie value={show} />
