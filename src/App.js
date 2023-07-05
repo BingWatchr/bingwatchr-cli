@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import { SignupPage } from './pages/Signup';
-import { HomePage } from './pages/homepage';
+import { HomePage } from './pages/Homepage';
 import { ShowDetailsPage } from './pages/ShowDetails';
 import { ShowListPage } from './pages/ShowListPage';
 import { OurNavbar } from './components/Navbar';
@@ -22,7 +22,7 @@ function App() {
 					path="/shows"
 					element={<ShowListPage searchTerm={searchTerm} />}
 				/>
-				<Route path="/shows/:showId" element={<ShowDetailsPage />} />
+				<Route path="/shows/:showId" element={<ShowDetailsPage />}  />
 				<Route path="/reviews/edit/:reviewId" element={<EditReviewPage />} />
 			</Routes>
 		</div>

@@ -6,8 +6,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-const API_URL = 'http://localhost:5005';
-
 export const ShowListPage = ({ searchTerm }) => {
 	const [shows, setShow] = useState([]);
 	// Filter the items based on the searchQuery
@@ -16,7 +14,7 @@ export const ShowListPage = ({ searchTerm }) => {
 	);
 	const getAllShows = () => {
 		axios
-			.get(`${API_URL}/api/shows`)
+			.get(`${process.env.REACT_APP_SERVER_URL}/api/shows`)
 			.then((response) => {
 				setShow(response.data);
 			})

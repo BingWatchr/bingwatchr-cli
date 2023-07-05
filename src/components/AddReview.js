@@ -1,27 +1,32 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import { StarRating } from "./StarRating";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-const API_URL = "http://localhost:5005";
 
 export const AddReview = (props) => {
   const { user } = useContext(AuthContext);
   const [text, setText] = useState("");
   const [newRating, setNewRating] = useState();
+  const storedToken = localStorage.getItem("authToken");
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { showId } = props;
-    console.log(user);
-    const author = user._id;
-    const requestBody = { author, text, newRating, showId };
-    // Get the token from the localStorage
-    const storedToken = localStorage.getItem("authToken");
 
+    const { showId } = props;
+    const author = user._id;
+    /* const { oldRating, oldWeight } = props.show; */
+    const oldRating = props.show.rating;
+    const oldWeight = props.show.weight;
+    const requestBody = { author, text, newRating, showId };
+    const rating = (oldRating * oldWeight + newRating) / (oldWeight + 1);
+    const weight = oldWeight + 1;
+    const requestShowBody = { rating, weight };
+    // Get the token from the localStorage
     axios
-      .post(`${API_URL}/api/reviews`, requestBody, {
+      .post(`${process.env.REACT_APP_SERVER_URL}/api/reviews`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
@@ -31,7 +36,18 @@ export const AddReview = (props) => {
         props.refreshShows();
       })
       .catch((e) => {
-        console.log(e, requestBody);
+        console.log(e);
+      });
+
+    axios
+      .put(
+        `${process.env.REACT_APP_SERVER_URL}/api/shows/${showId}`,
+        requestShowBody,
+        { headers: { Authorization: `Bearer ${storedToken}` } }
+      )
+      .then(() => {})
+      .catch((e) => {
+        console.log(e);
       });
   };
 

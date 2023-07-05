@@ -2,7 +2,6 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
-const API_URL = "http://localhost:5005";
 export const AddShow = (props) => {
   const [name, setName] = useState("");
   const [summary, setSummary] = useState("");
@@ -15,7 +14,7 @@ export const AddShow = (props) => {
     const storedToken = localStorage.getItem("authToken");
     // Send the token through the request "Authorization" Headers
     axios
-      .post(`${API_URL}/api/shows`, requestBody, {
+      .post(`${process.env.REACT_APP_SERVER_URL}/api/shows`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
