@@ -1,8 +1,7 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-
+import { StarDisplay } from "./../components/StarDisplay";
 export const ReviewCard = ({
   _id,
   author,
@@ -27,7 +26,10 @@ export const ReviewCard = ({
         <h3>Author: {author}</h3>
         <h4>Description:</h4>
         <p>{text}</p>
-        <p>Rating: {rating}</p>
+        <label>
+          Rating:
+        </label>
+        <StarDisplay value={rating} />
         <p>{createdAt}</p>
 
         <Button

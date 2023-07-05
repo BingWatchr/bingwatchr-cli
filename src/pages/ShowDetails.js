@@ -44,7 +44,7 @@ export const ShowDetailsPage = () => {
             </Card.Title>
             <div className="d-inline-flex gap-2">
               <StarDisplay value={show.rating} />
-              <div>{show.reviews.length}</div>
+              <div>{show.weight}</div>
             </div>
             <div>
               <p>{genresString}</p>
@@ -66,12 +66,13 @@ export const ShowDetailsPage = () => {
           </div>
         </Card>
       )}
-      <AddReview refreshShows={getShow} showId={showId} />
+      <AddReview refreshShows={getShow} showId={showId} show={show} />
       <h5 className="mt-5 mb-3">Users' Reviews</h5>
       {show &&
-        show.reviews.map((review) => (
-          <ReviewCard key={review._id} {...review} />
-        ))}
+        show.reviews
+          .slice()
+          .reverse()
+          .map((review) => <ReviewCard key={review._id} {...review} />)}
     </>
   );
 };

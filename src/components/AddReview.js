@@ -10,15 +10,21 @@ export const AddReview = (props) => {
   const { user } = useContext(AuthContext);
   const [text, setText] = useState("");
   const [newRating, setNewRating] = useState();
+  const storedToken = localStorage.getItem("authToken");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const { showId } = props;
     const author = user._id;
+    /* const { oldRating, oldWeight } = props.show; */
+    const oldRating = props.show.rating;
+    const oldWeight = props.show.weight;
     const requestBody = { author, text, newRating, showId };
+    const rating = (oldRating * oldWeight + newRating) / (oldWeight + 1);
+    const weight = oldWeight + 1;
+    const requestShowBody = { rating, weight };
     // Get the token from the localStorage
-    const storedToken = localStorage.getItem("authToken");
-
     axios
       .post(`${process.env.REACT_APP_SERVER_URL}/api/reviews`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
@@ -29,6 +35,17 @@ export const AddReview = (props) => {
         // from the ShowDetailsPage, to refresh the show details
         props.refreshShows();
       })
+      .catch((e) => {
+        console.log(e);
+      });
+
+    axios
+      .put(
+        `${process.env.REACT_APP_SERVER_URL}/api/shows/${showId}`,
+        requestShowBody,
+        { headers: { Authorization: `Bearer ${storedToken}` } }
+      )
+      .then(() => {})
       .catch((e) => {
         console.log(e);
       });
