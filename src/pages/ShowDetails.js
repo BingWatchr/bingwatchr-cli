@@ -72,7 +72,14 @@ export const ShowDetailsPage = () => {
         show.reviews
           .slice()
           .reverse()
-          .map((review) => <ReviewCard key={review._id} {...review} />)}
+          .map((review) => (
+            <ReviewCard
+              show={show}
+              review={review}
+              key={review._id}
+              {...review}
+            />
+          ))}
     </>
   );
 };

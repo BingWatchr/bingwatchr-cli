@@ -46,7 +46,10 @@ export const EditReviewPage = (props) => {
     <div className="d-flex flex-column justify-content-center align-items-center">
       <h3>Edit your review</h3>
 
-      <form onSubmit={handleFormSubmit} className="d-flex flex-column align-items-center w-25">
+      <form
+        onSubmit={handleFormSubmit}
+        className="d-flex flex-column align-items-center w-25"
+      >
         <label>Select Rating</label>
         <StarRating newRating={rating} setNewRating={setRating} />
 
@@ -61,7 +64,9 @@ export const EditReviewPage = (props) => {
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
-        <Button className="m-1" variant="dark" type="submit">Update Review</Button>
+        <Button className="m-1" variant="dark" type="submit">
+          Update Review
+        </Button>
       </form>
     </div>
   );

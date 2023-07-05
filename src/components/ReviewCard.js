@@ -10,26 +10,46 @@ export const ReviewCard = ({
   tvShow,
   createdAt,
   updatedAt,
+  show,
+  review,
 }) => {
-  const deleteReview = (id) => {
+  const storedToken = localStorage.getItem("authToken");
+  const deleteReview = (reviewId) => {
     axios
-      .delete(`${process.env.REACT_APP_SERVER_URL}/api/reviews/${id}`)
+      .delete(`${process.env.REACT_APP_SERVER_URL}/api/reviews/${reviewId}`)
       .then(() => {
         window.location.reload(false);
       })
       .catch((err) => console.log(err));
   };
 
+  const updateRating = (showId) => {
+    const showRating = show.rating;
+    const showWeight = show.weight;
+    const newRating =
+      (showRating * showWeight - review.rating) / (showWeight - 1);
+    const newWeight = show.weight - 1;
+    const requestShowBody = { rating: newRating, weight: newWeight };
+    axios
+      .put(
+        `${process.env.REACT_APP_SERVER_URL}/api/shows/${showId}`,
+        requestShowBody,
+        { headers: { Authorization: `Bearer ${storedToken}` } }
+      )
+      .then(() => {})
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   return (
     <Card className="ReviewCard d-flex align-items-center">
       <div className="d-flex flex-column gap-2 w-25 align-items-center">
         <h3>Author: {author}</h3>
+        <label>Rating:</label>
+        <StarDisplay value={rating} />
         <h4>Description:</h4>
         <p>{text}</p>
-        <label>
-          Rating:
-        </label>
-        <StarDisplay value={rating} />
         <p>{createdAt}</p>
 
         <Button
@@ -38,6 +58,7 @@ export const ReviewCard = ({
           onClick={(e) => {
             e.preventDefault();
             deleteReview(_id);
+            updateRating(tvShow[0], _id);
           }}
         >
           Delete Review

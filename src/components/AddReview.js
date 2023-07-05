@@ -11,7 +11,6 @@ export const AddReview = (props) => {
   const [text, setText] = useState("");
   const [newRating, setNewRating] = useState();
   const storedToken = localStorage.getItem("authToken");
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
