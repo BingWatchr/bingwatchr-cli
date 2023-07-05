@@ -10,16 +10,15 @@ export const Profile = () => {
 	const [shows, setShow] = useState([]);
 	const { user } = useContext(AuthContext);
 	console.log(user);
-	const likedBy = user._id;
-	const username = user.name;
-	console.log(likedBy);
+	//
+	// const username = user.name;
 
 	const getAllShows = () => {
 		axios
 			.get(`${process.env.REACT_APP_SERVER_URL}/api/shows`)
 			.then((response) => {
 				const allData = response.data;
-				setShow(allData.filter((item) => item.favorites.includes(likedBy)));
+				setShow(allData.filter((item) => item.favorites.includes(user?._id)));
 				console.log(response.data);
 			})
 			.catch((error) => console.log(error));
@@ -29,7 +28,7 @@ export const Profile = () => {
 	// by setting the empty dependency array - []
 	useEffect(() => {
 		getAllShows();
-	}, []);
+	}, [user]);
 
 	return (
 		<div className="ShowListPage">

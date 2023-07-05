@@ -24,6 +24,7 @@ export const ShowDetailsPage = () => {
 				response.data.summary = response.data.summary.replace(/<[^>]*>?/gm, '');
 				setShow(oneShow);
 				setGenresString(oneShow.genres.join(', '));
+				console.log(show);
 			})
 			.catch((error) => console.log(error));
 	};
@@ -71,7 +72,7 @@ export const ShowDetailsPage = () => {
 					</div>
 				</Card>
 			)}
-			<AddReview refreshShows={getShow} showId={showId} show={show} />
+			{/* <AddReview refreshShows={getShow} showId={showId} show={show} /> */}
 			<h5 className="mt-5 mb-3">Users' Reviews</h5>
 			{show &&
 				show.reviews
