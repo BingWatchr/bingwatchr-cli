@@ -73,7 +73,7 @@ export const ShowDetailsPage = () => {
 				</Card>
 			)}
 			{ <AddReview refreshShows={getShow} showId={showId} show={show} /> }
-			<h5 className="mt-5 mb-3">Users' Reviews</h5>
+			<h3 className="mt-5 mb-3">Users' Reviews</h3>
 			{show &&
 				show.reviews
 					.slice()

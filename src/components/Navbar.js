@@ -11,7 +11,6 @@ import { useLocation } from "react-router-dom";
 export const OurNavbar = ({ setSearchTerm }) => {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
   const location = useLocation();
-  console.log(location);
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
   };

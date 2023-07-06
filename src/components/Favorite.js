@@ -22,7 +22,7 @@ export const FavMovie = (props) => {
       }
     )
       .then((res) => res.json())
-      .then((result) => {       
+      .then((result) => {
         setLikes(result.favorites);
       })
       .catch((err) => {

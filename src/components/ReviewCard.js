@@ -8,11 +8,19 @@ export const ReviewCard = ({
   text,
   rating,
   tvShow,
-  createdAt,
+  updatedAt,
   show,
   review,
 }) => {
   const storedToken = localStorage.getItem("authToken");
+  const dateTime = new Date(updatedAt);
+  const year = dateTime.getFullYear();
+  const month = dateTime.toLocaleString("en-US", { month: "long" });
+  const day = dateTime.getDate();
+  const hours = dateTime.getHours();
+  const minutes = dateTime.getMinutes();
+  const formattedDateTime = `on ${month} ${day}, ${year} at ${hours}:${minutes}`;
+
   const deleteReview = (reviewId) => {
     axios
       .delete(`${process.env.REACT_APP_SERVER_URL}/api/reviews/${reviewId}`)
@@ -44,13 +52,10 @@ export const ReviewCard = ({
   return (
     <Card className="ReviewCard d-flex align-items-center">
       <div className="d-flex flex-column gap-2 w-25 align-items-center">
-        <h3>Author: {author[0].name}</h3>
-        <label>Rating:</label>
+        <h4 className="m-0">Author: {author[0].name}</h4>
+        <i>{formattedDateTime}</i>
         <StarDisplay value={rating} />
-        <h4>Description:</h4>
         <p>{text}</p>
-        <p>{createdAt}</p>
-
         <Button
           variant="dark"
           className="w-50"
