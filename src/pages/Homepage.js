@@ -9,7 +9,6 @@ import Image from 'react-bootstrap/Image';
 
 export const HomePage = () => {
 	const { user } = useContext(AuthContext);
-	console.log(user);
 	return (
 		<>
 			<Container>

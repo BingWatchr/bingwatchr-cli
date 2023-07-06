@@ -1,19 +1,19 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Link, useParams } from 'react-router-dom';
-import Card from 'react-bootstrap/Card';
-import { AddReview } from './../components/AddReview';
-import { ReviewCard } from './../components/ReviewCard';
-import { StarDisplay } from './../components/StarDisplay';
-import { FavMovie } from './../components/Favorite';
-import { AuthContext } from '../context/auth.context';
-import { useContext } from 'react';
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { Link, useParams } from "react-router-dom";
+import Card from "react-bootstrap/Card";
+import { AddReview } from "./../components/AddReview";
+import { ReviewCard } from "./../components/ReviewCard";
+import { StarDisplay } from "./../components/StarDisplay";
+import { FavMovie } from "./../components/Favorite";
+import { AuthContext } from "../context/auth.context";
+import { useContext } from "react";
 
 export const ShowDetailsPage = () => {
-	const [show, setShow] = useState(null);
-	const { showId } = useParams();
-	const [genresString, setGenresString] = useState('');
-	const { user } = useContext(AuthContext);
+  const [show, setShow] = useState(null);
+  const { showId } = useParams();
+  const [genresString, setGenresString] = useState("");
+  const { user } = useContext(AuthContext);
 
 	const getShow = () => {
 		axios
@@ -24,14 +24,14 @@ export const ShowDetailsPage = () => {
 				response.data.summary = response.data.summary.replace(/<[^>]*>?/gm, '');
 				setShow(oneShow);
 				setGenresString(oneShow.genres.join(', '));
-				console.log(show);
+				
 			})
 			.catch((error) => console.log(error));
 	};
 
-	useEffect(() => {
-		getShow();
-	}, []);
+  useEffect(() => {
+    getShow();
+  }, []);
 
 	return (
 		<>
@@ -72,13 +72,13 @@ export const ShowDetailsPage = () => {
 					</div>
 				</Card>
 			)}
-			{/* <AddReview refreshShows={getShow} showId={showId} show={show} /> */}
-			<h5 className="mt-5 mb-3">Users' Reviews</h5>
+			{ <AddReview refreshShows={getShow} showId={showId} show={show} /> }
+			<h3 className="mt-5 mb-3">Users' Reviews</h3>
 			{show &&
 				show.reviews
 					.slice()
 					.reverse()
-					.map((review) => <ReviewCard key={review._id} {...review} />)}
+					.map((review) => <ReviewCard review={review} show={show} key={review._id} {...review} />)}
 		</>
 	);
 };
