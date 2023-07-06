@@ -26,15 +26,13 @@ export const Random = () => {
 
   return (
     <div className="RndShowPage">
-    <h3 className="m-3">Your Random Show!</h3>
+      <h3 className="m-3">Your Random Show!</h3>
       <Container>
         <Row>
           <Col>
-            <Col>
-              {rndShow.map((show) => {
-                return <ShowCard key={show._id} {...show} />;
-              })}
-            </Col>
+            {rndShow.map((show) => {
+              return <ShowCard key={show._id} {...show} />;
+            })}
           </Col>
         </Row>
       </Container>

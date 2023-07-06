@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { AddShow } from "../components/AddShow";
 import { ShowCard } from "../components/ShowCard";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -28,8 +27,8 @@ export const ShowListPage = ({ searchTerm }) => {
   }, []);
   return (
     <div className="ShowListPage">
-  <h3 className="m-3">Browse through the Shows!</h3>
-      <Container >
+      <h3 className="m-3">Browse through the Shows!</h3>
+      <Container>
         <Row>
           <Col>
             {filteredItems.map((show) => {

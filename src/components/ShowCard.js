@@ -6,7 +6,7 @@ import { AuthContext } from "../context/auth.context";
 import { useContext } from "react";
 
 export const ShowCard = (value) => {
-  const premieredYear = value.premiered.slice(0, 4);
+  const premieredYear = value.premiered?.slice(0, 4);
   const { user } = useContext(AuthContext);
   return (
     <>
