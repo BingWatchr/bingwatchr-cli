@@ -28,9 +28,8 @@ export const ShowListPage = ({ searchTerm }) => {
   }, []);
   return (
     <div className="ShowListPage">
-      <AddShow refreshShows={getAllShows} />
-      <br />
-      <Container>
+  <h3 className="m-3">Browse through the Shows!</h3>
+      <Container >
         <Row>
           <Col>
             {filteredItems.map((show) => {

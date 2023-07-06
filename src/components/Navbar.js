@@ -6,10 +6,12 @@ import Navbar from "react-bootstrap/Navbar";
 import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { useLocation } from "react-router-dom";
 
 export const OurNavbar = ({ setSearchTerm }) => {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
-
+  const location = useLocation();
+  console.log(location);
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
   };
@@ -31,11 +33,13 @@ export const OurNavbar = ({ setSearchTerm }) => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mx-auto m-2">
             <Nav.Link href="/shows">
-              <b>Shows</b>
+              <b>📺 Shows</b>
             </Nav.Link>
-            <Nav.Link href="/random">Random Show</Nav.Link>
-            <Form className="">
+            <Nav.Link href="/random">🔀 Shuffle</Nav.Link>
+            <Nav.Link href="/add">➕ Add</Nav.Link>
+            <Form>
               <Form.Control
+                disabled={location.pathname !== "/shows"}
                 type="search"
                 onChange={handleSearch}
                 placeholder="Search"

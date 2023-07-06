@@ -26,7 +26,7 @@ export const Random = () => {
 
   return (
     <div className="RndShowPage">
-    <h3>Your Random Show!</h3>
+    <h3 className="m-3">Your Random Show!</h3>
       <Container>
         <Row>
           <Col>

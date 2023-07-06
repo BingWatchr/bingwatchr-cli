@@ -30,7 +30,7 @@ export const Profile = () => {
       {user && (
         <div className="profile">
           <h1>Your profile page</h1>
-          <h3>Your favorite shows</h3>
+          <h3 className="m-3">Your favorite shows</h3>
           <Container>
             <Row>
               <Col>

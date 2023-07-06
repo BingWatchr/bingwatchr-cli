@@ -28,10 +28,13 @@ export const AddShow = (props) => {
   };
   return (
     <div className="AddShow">
-      <h3>Add Show</h3>
-      <Form onSubmit={handleSubmit}>
+      <Form
+        className="d-flex flex-column justify-content-center align-items-center"
+        onSubmit={handleSubmit}
+      >
         <label>Title:</label>
         <input
+          maxLength="30"
           type="text"
           name="title"
           value={name}
@@ -39,6 +42,10 @@ export const AddShow = (props) => {
         />
         <label>Summary:</label>
         <textarea
+          maxLength="800"
+          rows="5"
+          cols="60"
+          className="m-1"
           type="text"
           name="description"
           value={summary}
@@ -46,12 +53,15 @@ export const AddShow = (props) => {
         />
         <label>Image URL:</label>
         <input
+        className="m-1"
           type="text"
           name="imageURL"
           value={imageURL}
           onChange={(e) => setImageURL(e.target.value)}
         />
-        <Button variant="dark" type="submit">Submit</Button>
+        <Button className="m-1" variant="dark" type="submit">
+          Submit
+        </Button>
       </Form>
     </div>
   );
