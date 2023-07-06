@@ -16,7 +16,6 @@ export const AddReview = (props) => {
 
     const { showId } = props;
     const author = user._id;
-    /* const { oldRating, oldWeight } = props.show; */
     const oldRating = props.show.rating;
     const oldWeight = props.show.weight;
     const requestBody = { author, text, newRating, showId };

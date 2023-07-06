@@ -24,7 +24,7 @@ export const ShowDetailsPage = () => {
 				response.data.summary = response.data.summary.replace(/<[^>]*>?/gm, '');
 				setShow(oneShow);
 				setGenresString(oneShow.genres.join(', '));
-				console.log(show);
+				
 			})
 			.catch((error) => console.log(error));
 	};
@@ -78,7 +78,7 @@ export const ShowDetailsPage = () => {
 				show.reviews
 					.slice()
 					.reverse()
-					.map((review) => <ReviewCard key={review._id} {...review} />)}
+					.map((review) => <ReviewCard review={review} show={show} key={review._id} {...review} />)}
 		</>
 	);
 };
