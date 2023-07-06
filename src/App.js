@@ -9,6 +9,7 @@ import { LoginPage } from './pages/Login';
 import { Profile } from './pages/Profile';
 import { EditReviewPage } from './pages/EditReviewPage';
 import { useState } from 'react';
+import { FilterPage } from './pages/FilterPage';
 
 function App() {
 	const [searchTerm, setSearchTerm] = useState('');
@@ -25,6 +26,7 @@ function App() {
 				/>
 				<Route path="/shows/:showId" element={<ShowDetailsPage />} />
 				<Route path="/reviews/edit/:reviewId" element={<EditReviewPage />} />
+				<Route path="/shows/tag/:type/:filtername" element={<FilterPage />} />
 				<Route path="/profile" element={<Profile />} />
 			</Routes>
 		</div>
