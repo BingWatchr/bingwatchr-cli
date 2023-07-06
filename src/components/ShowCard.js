@@ -46,7 +46,7 @@ export const ShowCard = (value) => {
           </div>
           <Card.Body>
             <div className="d-inline-flex gap-2">
-              <StarDisplay value={value.rating} />
+              <StarDisplay value={value.rating || 0} />
               <div>{value.weight}</div>
             </div>
             {user && <FavMovie value={value} />}
