@@ -12,6 +12,8 @@ import { useState } from 'react';
 import { Random } from './pages/Random';
 import { Add } from './pages/Add';
 import { FilterPage } from './pages/FilterPage';
+import { isAnon } from './components/isAnon';
+import { isPrivate } from './components/isPrivate';
 
 function App() {
 	const [searchTerm, setSearchTerm] = useState('');
@@ -19,19 +21,61 @@ function App() {
 		<div className="App">
 			<OurNavbar setSearchTerm={setSearchTerm} />
 			<Routes>
-				<Route path="/" element={<HomePage />} />
-				<Route path="/login" element={<LoginPage />} />
-				<Route path="/signup" element={<SignupPage />} />
+				<Route
+					path="/"
+					element={
+						<isAnon>
+							<HomePage />
+						</isAnon>
+					}
+				/>{' '}
+				<Route
+					path="/login"
+					element={
+						<isAnon>
+							<LoginPage />
+						</isAnon>
+					}
+				/>{' '}
+				<Route
+					path="/signup"
+					element={
+						<isAnon>
+							<SignupPage />
+						</isAnon>
+					}
+				/>{' '}
 				<Route
 					path="/shows"
 					element={<ShowListPage searchTerm={searchTerm} />}
 				/>
 				<Route path="/shows/:showId" element={<ShowDetailsPage />} />
-				<Route path="/reviews/edit/:reviewId" element={<EditReviewPage />} />
+				<Route
+					path="/reviews/edit/:reviewId"
+					element={
+						<isPrivate>
+							<EditReviewPage />
+						</isPrivate>
+					}
+				/>
 				<Route path="/shows/tag/:type/:filtername" element={<FilterPage />} />
-				<Route path="/profile" element={<Profile />} />
+				<Route
+					path="/profile"
+					element={
+						<isPrivate>
+							<Profile />
+						</isPrivate>
+					}
+				/>
 				<Route path="/random" element={<Random />} />
-				<Route path="/add" element={<Add />} />
+				<Route
+					path="/add"
+					element={
+						<isPrivate>
+							<Add />
+						</isPrivate>
+					}
+				/>
 			</Routes>
 		</div>
 	);
