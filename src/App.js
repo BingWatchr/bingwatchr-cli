@@ -19,19 +19,32 @@ function App() {
 		<div className="App">
 			<OurNavbar setSearchTerm={setSearchTerm} />
 			<Routes>
-				<Route path="/" element={<HomePage />} />
-				<Route path="/login" element={<LoginPage />} />
-				<Route path="/signup" element={<SignupPage />} />
+				<isAnon>
+					<Route path="/" element={<HomePage />} />{' '}
+				</isAnon>
+				<isAnon>
+					<Route path="/login" element={<LoginPage />} />{' '}
+				</isAnon>
+				1
+				<isAnon>
+					<Route path="/signup" element={<SignupPage />} />{' '}
+				</isAnon>
 				<Route
 					path="/shows"
 					element={<ShowListPage searchTerm={searchTerm} />}
 				/>
 				<Route path="/shows/:showId" element={<ShowDetailsPage />} />
-				<Route path="/reviews/edit/:reviewId" element={<EditReviewPage />} />
+				<isPrivate>
+					<Route path="/reviews/edit/:reviewId" element={<EditReviewPage />} />
+				</isPrivate>
 				<Route path="/shows/tag/:type/:filtername" element={<FilterPage />} />
-				<Route path="/profile" element={<Profile />} />
+				<isPrivate>
+					<Route path="/profile" element={<Profile />} />
+				</isPrivate>
 				<Route path="/random" element={<Random />} />
-				<Route path="/add" element={<Add />} />
+				<isPrivate>
+					<Route path="/add" element={<Add />} />
+				</isPrivate>
 			</Routes>
 		</div>
 	);
