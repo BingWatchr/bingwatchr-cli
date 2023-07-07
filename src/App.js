@@ -12,8 +12,8 @@ import { useState } from 'react';
 import { Random } from './pages/Random';
 import { Add } from './pages/Add';
 import { FilterPage } from './pages/FilterPage';
-import { isAnon } from './components/isAnon';
-import { isPrivate } from './components/isPrivate';
+import { IsAnon } from './components/isAnon';
+import { IsPrivate } from './components/isPrivate';
 
 function App() {
 	const [searchTerm, setSearchTerm] = useState('');
@@ -24,25 +24,25 @@ function App() {
 				<Route
 					path="/"
 					element={
-						<isAnon>
+						<IsAnon>
 							<HomePage />
-						</isAnon>
+						</IsAnon>
 					}
 				/>{' '}
 				<Route
 					path="/login"
 					element={
-						<isAnon>
+						<IsAnon>
 							<LoginPage />
-						</isAnon>
+						</IsAnon>
 					}
 				/>{' '}
 				<Route
 					path="/signup"
 					element={
-						<isAnon>
+						<IsAnon>
 							<SignupPage />
-						</isAnon>
+						</IsAnon>
 					}
 				/>{' '}
 				<Route
@@ -53,27 +53,27 @@ function App() {
 				<Route
 					path="/reviews/edit/:reviewId"
 					element={
-						<isPrivate>
+						<IsPrivate>
 							<EditReviewPage />
-						</isPrivate>
+						</IsPrivate>
 					}
 				/>
 				<Route path="/shows/tag/:type/:filtername" element={<FilterPage />} />
 				<Route
 					path="/profile"
 					element={
-						<isPrivate>
+						<IsPrivate>
 							<Profile />
-						</isPrivate>
+						</IsPrivate>
 					}
 				/>
 				<Route path="/random" element={<Random />} />
 				<Route
 					path="/add"
 					element={
-						<isPrivate>
+						<IsPrivate>
 							<Add />
-						</isPrivate>
+						</IsPrivate>
 					}
 				/>
 			</Routes>

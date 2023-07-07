@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 export const StarDisplay = (value) => {
-  const filledStars = Math.round(value.value);
+  const filledStars = Math.round(value.value?value.value:0);
   const emptyStars = 5 - filledStars;
   return (
     <div className="StarDisplay">
