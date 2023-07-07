@@ -38,3 +38,5 @@ npm start
 ## Link to server repo
 - https://github.com/BingWatchr/bingwatchr-srv.git
 
+## Link to the app demo
+- https://bingewatchr.netlify.app/
