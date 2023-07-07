@@ -15,7 +15,9 @@ export const FilterPage = () => {
 
 	const getAllShows = () => {
 		axios
-			.get(`${API_URL}/api/shows/tag/${type}/${filtername}`)
+			.get(
+				`${process.env.REACT_APP_SERVER_URL}/api/shows/tag/${type}/${filtername}`
+			)
 			.then((response) => {
 				setShow(response.data);
 			})
