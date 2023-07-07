@@ -35,6 +35,6 @@ npm start
 
 5. Open your browser and navigate to `http://localhost:3000` to access to BingeWatchr
 
-##Link to server repo
+## Link to server repo
 - https://github.com/BingWatchr/bingwatchr-srv.git
 
